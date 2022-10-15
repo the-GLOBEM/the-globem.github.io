@@ -1,0 +1,192 @@
+# Location Features
+
+We incorporate all features in [RAPIDS-Location](https://www.rapids.science/1.6/features/phone-locations/),  which includes location variance, location entropy, travel distance, etc. 
+
+In addition, we also added more features (duration of staying) for specific points of interest, 
+including places for living, study, exercise, and relaxation. The following tables list out specific features. 
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>escription</strong></td>
+    </tr>
+    <tr>
+        <td>`hometime`</td>
+        <td>minutes</td>
+        <td>Time at home. Time spent at home in minutes. Home is the most visited significant location between 8 pm and 8 am, including any pauses within a 200-meter radius.</td>
+    </tr>
+    <tr>
+        <td>`disttravelled`</td>
+        <td>meters</td>
+        <td>Total distance traveled over a day (flights).</td>
+    </tr>
+    <tr>
+        <td>`rog`</td>
+        <td>meters</td>
+        <td>The Radius of Gyration (rog) is a measure in meters of the area covered by a person over a day. A centroid is calculated for all the places (pauses) visited during a day, and a weighted distance between all the places and that centroid is computed. The weights are proportional to the time spent in each place.</td>
+    </tr>
+    <tr>
+        <td>`maxdiam`</td>
+        <td>meters</td>
+        <td>The maximum diameter is the largest distance between any two pauses.</td>
+    </tr>
+    <tr>
+        <td>`maxhomedist`</td>
+        <td>meters</td>
+        <td>The maximum distance from home in meters.</td>
+    </tr>
+    <tr>
+        <td>`siglocsvisited`</td>
+        <td>locations</td>
+        <td>The number of significant locations visited during the day. Significant locations are computed using k-means clustering over pauses found in the whole monitoring period. The number of clusters is found iterating k from 1 to 200 stopping until the centroids of two significant locations are within 400 meters of one another.</td>
+    </tr>
+    <tr>
+        <td>`avgflightlen`</td>
+        <td>meters</td>
+        <td>Mean length of all flights.</td>
+    </tr>
+    <tr>
+        <td>`stdflightlen`</td>
+        <td>meters</td>
+        <td>Standard deviation of the length of all flights.</td>
+    </tr>
+    <tr>
+        <td>`avgflightdur`</td>
+        <td>seconds</td>
+        <td>Mean duration of all flights.</td>
+    </tr>
+    <tr>
+        <td>`stdflightdur`</td>
+        <td>seconds</td>
+        <td>The standard deviation of the duration of all flights.</td>
+    </tr>
+    <tr>
+        <td>`probpause`</td>
+        <td>-</td>
+        <td>The fraction of a day spent in a pause (as opposed to a flight).</td>
+    </tr>
+    <tr>
+        <td>`siglocentropy`</td>
+        <td>nats</td>
+        <td>Shannon’s entropy measurement is based on the proportion of time spent at each significant location visited during a day.</td>
+    </tr>
+    <tr>
+        <td>`circdnrtn`</td>
+        <td>-</td>
+        <td>A continuous metric quantifying a person’s circadian routine that can take any value between 0 and 1, where 0 represents a daily routine completely different from any other sensed days and 1 a routine the same as every other sensed day.</td>
+    </tr>
+    <tr>
+        <td>`wkenddayrtn`</td>
+        <td>-</td>
+        <td>Same as circdnrtn but computed separately for weekends and weekdays.</td>
+    </tr>
+    <tr>
+        <td>`locationvariance`</td>
+        <td>meters2</td>
+        <td>The sum of the variances of the latitude and longitude columns.</td>
+    </tr>
+    <tr>
+        <td>`loglocationvariance`</td>
+        <td>-</td>
+        <td>Log of the sum of the variances of the latitude and longitude columns.</td>
+    </tr>
+    <tr>
+        <td>`totaldistance`</td>
+        <td>meters</td>
+        <td>Total distance traveled in a time segment using the haversine formula.</td>
+    </tr>
+    <tr>
+        <td>`avgspeed`</td>
+        <td>km/hr</td>
+        <td>Average speed in a time segment considering only the instances labeled as Moving. This feature is 0 when the participant is stationary during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`varspeed`</td>
+        <td>km/hr</td>
+        <td>Speed variance in a time segment considering only the instances labeled as Moving. This feature is 0 when the participant is stationary during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`numberofsignificantplaces`</td>
+        <td>places</td>
+        <td>Number of significant locations visited. It is calculated using the DBSCAN/OPTICS clustering algorithm which takes in EPS and MIN_SAMPLES as parameters to identify clusters. Each cluster is a significant place.</td>
+    </tr>
+    <tr>
+        <td>`numberlocationtransitions`</td>
+        <td>transitions</td>
+        <td>Number of movements between any two clusters in a time segment.</td>
+    </tr>
+    <tr>
+        <td>`radiusgyration`</td>
+        <td>meters</td>
+        <td>Quantifies the area covered by a participant.</td>
+    </tr>
+    <tr>
+        <td>`timeattop1location`</td>
+        <td>minutes</td>
+        <td>Time spent at the most significant location.</td>
+    </tr>
+    <tr>
+        <td>`timeattop2location`</td>
+        <td>minutes</td>
+        <td>Time spent at the 2nd most significant location.</td>
+    </tr>
+    <tr>
+        <td>`timeattop3location`</td>
+        <td>minutes</td>
+        <td>Time spent at the 3rd most significant location.</td>
+    </tr>
+    <tr>
+        <td>`movingtostaticratio`</td>
+        <td>-</td>
+        <td>Ratio between stationary time and total location sensed time. A lat/long coordinate pair is labeled as stationary if its speed (distance/time) to the next coordinate pair is less than 1km/hr. A higher value represents a more stationary routine.</td>
+    </tr>
+    <tr>
+        <td>`outlierstimepercent`</td>
+        <td>-</td>
+        <td>Ratio between the time spent in non-significant clusters divided by the time spent in all clusters (stationary time. Only stationary samples are clustered). A higher value represents more time spent in non-significant clusters.</td>
+    </tr>
+    <tr>
+        <td>`maxlengthstayatclusters`</td>
+        <td>minutes</td>
+        <td>Maximum time spent in a cluster (significant location).</td>
+    </tr>
+    <tr>
+        <td>`minlengthstayatclusters`</td>
+        <td>minutes</td>
+        <td>Minimum time spent in a cluster (significant location).</td>
+    </tr>
+    <tr>
+        <td>`avglengthstayatclusters`</td>
+        <td>minutes</td>
+        <td>Average time spent in a cluster (significant location).</td>
+    </tr>
+    <tr>
+        <td>`stdlengthstayatclusters`</td>
+        <td>minutes</td>
+        <td>Standard deviation of time spent in a cluster (significant location).</td>
+    </tr>
+    <tr>
+        <td>`locationentropy`</td>
+        <td>nats</td>
+        <td>Shannon Entropy computed over the row count of each cluster (significant location), it is higher the more rows belong to a cluster (i.e., the more time a participant spent at a significant location).</td>
+    </tr>
+    <tr>
+        <td>`normalizedlocationentropy`</td>
+        <td>nats</td>
+        <td>Shannon Entropy computed over the row count of each cluster (significant location) divided by the number of clusters; it is higher the more rows belong to a cluster (i.e., the more time a participant spent at a significant location).</td>
+    </tr>
+    <tr>
+        <td>`timeathome`</td>
+        <td>minutes</td>
+        <td>Time spent at home.</td>
+    </tr>
+    <tr>
+        <td>`timeat[PLACE]`</td>
+        <td>minutes</td>
+        <td>Time spent at `[PLACE]`, which can be living, exercise, study, greens.</td>
+    </tr>
+</table>
+

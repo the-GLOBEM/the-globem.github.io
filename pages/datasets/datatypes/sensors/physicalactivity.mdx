@@ -1,0 +1,124 @@
+# Physical Activity Feature
+
+We utilize physical activity features from [RAPIDS-Fitbit-Steps](https://www.rapids.science/1.6/features/fitbit-steps-intraday/). They include both high-level features (number of steps, duration of being active), 
+and low-level features about the statistics of active or sedentary episodes (mean, std, max, min).
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>escription</strong></td>
+    </tr>
+    <tr>
+        <td>`maxsumsteps`</td>
+        <td>steps</td>
+        <td>The maximum daily step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`minsumsteps`</td>
+        <td>steps</td>
+        <td>The minimum daily step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`avgsumsteps`</td>
+        <td>steps</td>
+        <td>The average daily step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`mediansumsteps`</td>
+        <td>steps</td>
+        <td>The median of daily step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`stdsumsteps`</td>
+        <td>steps</td>
+        <td>The standard deviation of daily step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`sumsteps`</td>
+        <td>steps</td>
+        <td>The total step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`maxsteps`</td>
+        <td>steps</td>
+        <td>The maximum step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`minsteps`</td>
+        <td>steps</td>
+        <td>The minimum step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`avgsteps`</td>
+        <td>steps</td>
+        <td>The average step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`stdsteps`</td>
+        <td>steps</td>
+        <td>The standard deviation of step count during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`countepisodesedentarybout`</td>
+        <td>bouts</td>
+        <td>Number of sedentary bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`sumdurationsedentarybout`</td>
+        <td>minutes</td>
+        <td>Total duration of all sedentary bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`maxdurationsedentarybout`</td>
+        <td>minutes</td>
+        <td>The maximum duration of any sedentary bout during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`mindurationsedentarybout`</td>
+        <td>minutes</td>
+        <td>The minimum duration of any sedentary bout during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`avgdurationsedentarybout`</td>
+        <td>minutes</td>
+        <td>The average duration of sedentary bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`stddurationsedentarybout`</td>
+        <td>minutes</td>
+        <td>The standard deviation of the duration of sedentary bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`countepisodeactivebout`</td>
+        <td>bouts</td>
+        <td>Number of active bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`sumdurationactivebout`</td>
+        <td>minutes</td>
+        <td>Total duration of all active bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`maxdurationactivebout`</td>
+        <td>minutes</td>
+        <td>The maximum duration of any active bout during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`mindurationactivebout`</td>
+        <td>minutes</td>
+        <td>The minimum duration of any active bout during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`avgdurationactivebout`</td>
+        <td>minutes</td>
+        <td>The average duration of active bouts during a time segment.</td>
+    </tr>
+    <tr>
+        <td>`stddurationactivebout`</td>
+        <td>minutes</td>
+        <td>The standard deviation of the duration of active bouts during a time segment.</td>
+    </tr>
+</table>

@@ -1,0 +1,74 @@
+# Call Features
+
+We employ features from [RAPIDS-Call](https://www.rapids.science/1.6/features/phone-calls/) that cover the statistics of 
+incoming/outgoing calls' duration (count, sum, mean, std, max, min, entropy), and the count of missed calls.
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>escription</strong></td>
+    </tr>
+    <tr>
+        <td>`count`</td>
+        <td>calls</td>
+        <td>Number of calls of a particular `call_type` (incoming/outgoing) occurred during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`distinctcontacts`</td>
+        <td>contacts</td>
+        <td>Number of distinct contacts that are associated with a particular `call_type` for a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`meanduration`</td>
+        <td>seconds</td>
+        <td>The mean duration of all calls of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`sumduration`</td>
+        <td>seconds</td>
+        <td>The sum of the duration of all calls of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`minduration`</td>
+        <td>seconds</td>
+        <td>The duration of the shortest call of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`maxduration`</td>
+        <td>seconds</td>
+        <td>The duration of the longest call of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`stdduration`</td>
+        <td>seconds</td>
+        <td>The standard deviation of the duration of all the calls of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`modeduration`</td>
+        <td>seconds</td>
+        <td>The mode of the duration of all the calls of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`entropyduration`</td>
+        <td>nats</td>
+        <td>The estimate of the Shannon entropy for the the duration of all the calls of a particular `call_type` during a particular `time_segment`.</td>
+    </tr>
+    <tr>
+        <td>`timefirstcall`</td>
+        <td>minutes</td>
+        <td>The time in minutes between 12:00am (midnight) and the first call of `call_type`.</td>
+    </tr>
+    <tr>
+        <td>`timelastcall`</td>
+        <td>minutes</td>
+        <td>The time in minutes between 12:00am (midnight) and the last call of `call_type`.</td>
+    </tr>
+    <tr>
+        <td>`countmostfrequentcontact`</td>
+        <td>calls</td>
+        <td>The number of calls of a particular `call_type` during a particular `time_segment` of the most frequent contact throughout the monitored period.</td>
+    </tr>
+</table>

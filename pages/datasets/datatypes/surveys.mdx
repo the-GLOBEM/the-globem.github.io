@@ -1,0 +1,20 @@
+# Survey Data
+
+## Data Files
+
+The `SurveyData` folder contains five files, all indexed by `pid` and `date`:
+- `dep_weekly.csv`: The specific file for depression labels (column `dep`) combining post and EMA surveys.
+- `dep_endterm.csv`: The specific file for depression labels (column `dep`) only in post surveys. Some prior depression detection tasks focus on end-of-term depression prediction. 
+*These two files are created for depression as it is the benchmark task. We envision future work can be extended to other modeling targets as well.*
+- `pre.csv`: The file contains all questionnaires that participants filled in right before the start of the data collection study (thus pre-study).
+- `post.csv`: The file contains all questionnaires that participants filled in right after the end of the data collection study (thus post-study).
+- `ema.csv`: The file contains all EMA surveys that participants filled in during the study. Some EMAs were delivered on Wednesdays, while some were delivered on Sundays.
+
+<br/>
+
+<sup>
+    **PS**: Due to the design iteration, some questionnaires are not available in all studies. 
+    Moreover, some questionnaires have different versions across years. We clarify them using column names. 
+    For example, `INS-W_2` only has `CESD_9items_POST`, while others have `CESD_10items_POST`. 
+    `CESD_9items_POST` is also calculated in other datasets to make the modeling target comparable across datasets.
+</sup>

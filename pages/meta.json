@@ -1,0 +1,29 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "page",
+    "hidden": true
+  },
+  "datasets": {
+    "title": "Datasets",
+    "type": "page"
+  },
+  "benchmark": {
+    "title": "Benchmark",
+    "type": "page"
+  },
+  "publications": {
+    "title": "Publications",
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
+  },
+  "team": {
+    "title": "Team",
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "location": "Location",
+  "phoneusage": "Phone Usage",
+  "call": "Call",
+  "bluetooth": "Bluetooth",
+  "physicalactivity": "Physical Activity",
+  "sleep": "Sleep"
+}

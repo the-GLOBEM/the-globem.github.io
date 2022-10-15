@@ -1,0 +1,46 @@
+# Feature Data
+
+## Data Files
+The `FeatureData` folder contains seven files, all index by `pid` and `date`.
+- `rapids.csv`: The complete feature file that contains all features.
+- `location.csv`: The feature file that contains all `Location` features.
+- `screen.csv`: The feature file that contains all `PhoneUsage` features.
+- `call.csv`: The feature file that contains all `Call` features.
+- `bluetooth.csv`: The feature file that contains all `Bluetooth` features.
+- `steps.csv`: The feature file that contains all `PhysicalActivity` features.
+- `sleep.csv`: The feature file that contains all `Sleep` features.
+- `wifi.csv`: The feature file that contains all `WiFi` features. Note that this feature type is not used by any existing algorithms and often has a high data missing rate.
+
+## Processing
+
+Please note:
+- All features are extracted with multiple `time_segment`s
+  - `morning` (6 am - 12 pm, calculated daily)
+  - `afternoon` (12 pm - 6 pm, calculated daily)
+  - `evening` (6 pm - 12 am, calculated daily)
+  - `night` (12 am - 6 am, calculated daily)
+  - `allday` (24 hrs from 12 am to 11:59 pm, calculated daily)
+  - `7-day history` (calculated daily)
+  - `14-day history` (calculated daily)
+  - `weekdays` (calculated once per week on Friday)
+  - `weekend` (calculated once per week on Sunday)
+- For all features with numeric values, we also provide two more versions:
+  - `normalized`: subtracted by each participant's median and divided by the 5-95 quantile range
+  - `discretized`: low/medium/high split by 33/66 quantile of each participant's feature value
+
+## Naming Format
+
+All features follow a consistent naming format:
+`[feature_type]:[feature_name][version]:[time_segment]`
+- `feature_type`: It corresponds to the six data types. `location` - `f_loc`, `screen` - `f_screen`, `call` - `f_call`, `bluetooth` - `f_blue`, `steps` - `f_steps`, `sleep` - `f_slp`.
+- `feature_name`: The name of the feature provided by RAPIDS, *i.e.*, the second column of the following figure, plus some additional information. A typical format is `[SensorType]_[CodeProvider]_[featurename]`. Please refer to [RAPIDS's naming format](https://www.rapids.science/1.6/features/feature-introduction/) for more details.
+- `version`: It has three versions: 1) nothing, just empty `""`; 2) normalized, `_norm`; 3) discretized, `_dis`.
+- `time_segment`: It corresponds to the specific time segment. `morning` - `morning`, `afternoon` - `afternoon`, `evening` - `evening`, `night` - `night`, `allday` - `allday`, `7-day history` - `7dhist`, `14-day history` - `14dhist`, `weekday` - `weekday`, `weekend` - `weekend`.
+
+A participant's `sumdurationunlock` normalized feature in mornings is `f_loc:phone_screen_rapids_sumdurationunlock_norm:morning`.
+
+
+## Feature Details
+
+Please find the following pages about different feature type available in our datasets. 
+Most texts are taken from [RAPIDS](https://www.rapids.science/1.6/) with courtesy.

@@ -1,0 +1,64 @@
+# Bluetooth Features
+
+We use all features from [RAPIDS-Bluetooth](https://www.rapids.science/1.6/features/phone-bluetooth/), 
+including the number of scans of participants' own devices and others' devices, as well as the unique count of these devices.
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>escription</strong></td>
+    </tr>
+    <tr>
+        <td>`countscans`</td>
+        <td>scans</td>
+        <td>Number of scans (rows) from the devices sensed during a time segment instance. The more scans a bluetooth device has the longer it remained within range of the participant’s phone.</td>
+    </tr>
+    <tr>
+        <td>`uniquedevices`</td>
+        <td>devices</td>
+        <td>Number of unique bluetooth devices sensed during a time segment instance as identified by their hardware addresses.</td>
+    </tr>
+    <tr>
+        <td>`meanscans`</td>
+        <td>scans</td>
+        <td>Mean of the scans of every sensed device within each time segment instance.</td>
+    </tr>
+    <tr>
+        <td>`stdscans`</td>
+        <td>scans</td>
+        <td>Standard deviation of the scans of every sensed device within each time segment instance.</td>
+    </tr>
+    <tr>
+        <td>`countscansmostfrequentdevicewithinsegments`</td>
+        <td>scans</td>
+        <td>Number of scans of the most sensed device within each time segment instance.</td>
+    </tr>
+    <tr>
+        <td>`countscansleastfrequentdevicewithinsegments`</td>
+        <td>scans</td>
+        <td>Number of scans of the least sensed device within each time segment instance.</td>
+    </tr>
+    <tr>
+        <td>`countscansmostfrequentdeviceacrosssegments`</td>
+        <td>scans</td>
+        <td>Number of scans of the most sensed device across time segment instances of the same type.</td>
+    </tr>
+    <tr>
+        <td>`countscansleastfrequentdeviceacrosssegments`</td>
+        <td>scans</td>
+        <td>Number of scans of the least sensed device across time segment instances of the same type per device.</td>
+    </tr>
+    <tr>
+        <td>`countscansmostfrequentdeviceacrossdataset`</td>
+        <td>scans</td>
+        <td>Number of scans of the most sensed device across the entire dataset of every participant.</td>
+    </tr>
+    <tr>
+        <td>`countscansleastfrequentdeviceacrossdataset`</td>
+        <td>scans</td>
+        <td>Number of scans of the least sensed device across the entire dataset of every participant.</td>
+    </tr>
+</table>

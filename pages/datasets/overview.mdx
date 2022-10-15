@@ -1,0 +1,77 @@
+import Callout from 'nextra-theme-docs/callout'
+import Link from 'next/link'
+import FullWidthImage from 'components/images'
+
+# Overview
+
+## Dataset Introduction
+
+GLOBEM datasets contain the first released multi-year mobile and wearable sensing datasets that contain four data collection studies from 2018 to 2021, 
+conducted at University of Washington (led by the UW-EXP Study Team).
+To download the dataset, please visit our [PhysioNet page](https://physionet.org/content/globem/1.0.0/).
+
+The four years of datasets are named as
+- `INS-W_1` (2018) - 155 participants
+- `INS-W_2` (2019) - 218 participants
+- `INS-W_3` (2020) - 137 participants
+- `INS-W_4` (2021) - 195 participants
+
+<Callout emoji="💡">
+Our datasets have a high representation of females (58.9\%), immigrants (24.2\%), 
+first-generations (38.2\%), and people with disability (9.1\%), and have a wide coverage of races,
+ with Asian (53.9\%) and White (31.9\%) being dominant (Hispanic/Latino 7.4\%, Black/African American 3.3\%).
+</Callout>
+
+We envision our datasets can:
+- Serve as a reliable testbed for a fair comparison between behavior modeling algorithms.
+- Support multiple cross-dataset generalization tasks to evaluate an algorithm’s generalizability (*e.g.*, different datasets across different years) and robustness (*e.g.*, same users over multiple years).
+- Assist ML and Ubicomp researchers in developing more generalizable longitudinal behavior modeling algorithms.
+
+The overall data collection procedure is shown in the following figure:
+<br/>
+<FullWidthImage
+  src = "/images/data_collection.png"
+  alt = "Overview of the data collection studies"
+/>
+
+## Data Types
+
+Each of our datasets include three types of data: `Feature Data`, `Survey Data`, and `Demographic Data`.
+
+### Behaivor Feature Data
+
+Each year, our data collection study lasted three months and collected data from a mobile phone and a wearable fitness tracker 24×7. 
+The behavior feature data types include
+- `Location`
+- `PhoneUsage`
+- `Call`
+- `Bluetooth`
+- `PhysicalActivity`
+- `Sleep`
+
+### Survey Data
+
+### Demographic Data
+
+
+
+## Examples
+
+The datasets capture various aspects of participants' life experiences, such as general behavior patterns, the weekly routine cycle, the impact of COVID (Year3, 2020), and the gradual recovery after COVID (Year4, 2021).
+
+<br/>
+<FullWidthImage
+  src = "/images/timeseries_examples.png"
+  alt = "Timeseries data examples"
+/>
+
+Meanwhile, each year's dataset has its uniqueness. Here we show one example from each data type.
+
+<br/>
+<FullWidthImage
+  src = "/images/distribution_examples.png"
+  alt = "Distribution examples"
+/>
+
+
+

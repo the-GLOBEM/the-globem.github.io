@@ -1,0 +1,86 @@
+# Phone Usage Features
+
+We include all features in [RAPIDS-Screen](https://www.rapids.science/1.6/features/phone-screen/) 
+that cover the statistics of unlocking episodes (count, sum, mean, std, max, min).
+
+We further contextualize these features at different locations (home and study places) to capture fine-grained phone usage behaviors.
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>escription</strong></td>
+    </tr>
+    <tr>
+        <td>`sumduration`</td>
+        <td>minutes</td>
+        <td>Total duration of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`maxduration`</td>
+        <td>minutes</td>
+        <td>Longest duration of any unlock episode.</td>
+    </tr>
+    <tr>
+        <td>`minduration`</td>
+        <td>minutes</td>
+        <td>Shortest duration of any unlock episode.</td>
+    </tr>
+    <tr>
+        <td>`avgduration`</td>
+        <td>minutes</td>
+        <td>Average duration of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`stdduration`</td>
+        <td>minutes</td>
+        <td>Standard deviation duration of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`countepisode`</td>
+        <td>episodes</td>
+        <td>Number of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`firstuseafter`</td>
+        <td>minutes</td>
+        <td>Minutes until the first unlock episode.</td>
+    </tr>
+    <tr>
+        <td>`sumduration[PLACE]`</td>
+        <td>minutes</td>
+        <td>Total duration of all unlock episodes. `[PLACE]` can be living, exercise, study, greens. Same below.</td>
+    </tr>
+    <tr>
+        <td>`maxduration[PLACE]`</td>
+        <td>minutes</td>
+        <td>Longest duration of any unlock episode.</td>
+    </tr>
+    <tr>
+        <td>`minduration[PLACE]`</td>
+        <td>minutes</td>
+        <td>Shortest duration of any unlock episode.</td>
+    </tr>
+    <tr>
+        <td>`avgduration[PLACE]`</td>
+        <td>minutes</td>
+        <td>Average duration of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`stdduration[PLACE]`</td>
+        <td>minutes</td>
+        <td>Standard deviation duration of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`countepisode[PLACE]`</td>
+        <td>episodes</td>
+        <td>Number of all unlock episodes.</td>
+    </tr>
+    <tr>
+        <td>`firstuseafter[PLACE]`</td>
+        <td>minutes</td>
+        <td>Minutes until the first unlock episode.</td>
+    </tr>
+</table>
