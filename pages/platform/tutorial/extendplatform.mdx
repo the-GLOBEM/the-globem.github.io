@@ -1,0 +1,92 @@
+# How to Extend GLOBEM
+
+GLOBEM also provide flexbile ways for researhers and developers to add new algorithms, new datasets, as well as new modeling targets.
+
+## How to add a new algorithm
+
+The platform supports researchers in developing their own algorithms easily. 
+Reading through [Platform Description](/platform/tutorial/platformdescription) before implementing new algorithms is strongly recommended.
+
+An algorithm just needs to extend the abstract class [`DepressionDetectionAlgorithmBase`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/base.py) and implement:
+1. Define the function `prep_data_repo` (as the feature preparation module)
+    It takes in `DatasetDict` as the input and returns a `DataRepo` object (see the definition [here](https://github.com/UW-EXP/GLOBEM/tree/main/data_loader/data_loader_ml.py)), 
+    which is a simple data object that saves `X`, `y`, and `pids` (participant ids). This can be used for preparing both training and testing sets. 
+2. Define the function `prep_model` (as the model computation module)
+    It returns a `DepressionDetectionClassifierBase` object (see the definition [here](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/base.py)), 
+    which needs to support `fit` (model training), `predict` (model prediction), and `predict_proba` (model prediction with probability distribution).
+3. Add a configuration file in `config` (as the configuration module)
+    At least one yaml file with a unique name needs to be put in the [`config`](https://github.com/UW-EXP/GLOBEM/tree/main/config) folder. 
+    The config file will contain controllable parameters that can be adjusted manually. Please refer to [`config/README.md`](https://github.com/UW-EXP/GLOBEM/tree/main/config/README.md) for more details.
+4. Register the new algorithm in [`algorithm/algorithm_factory.py`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/algorithm_factory.py) by adding appropriate class import and if-else logic.
+
+The platform further prepare two templates for easier implementation of common traditional ML and DL algorithms.
+
+### How to add an ML algorithm
+
+We provide a basic traditional machine learning algorithm  [`DepressionDetectionAlgorithm_ML_basic`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/ml_basic.py) that extends `DepressionDetectionAlgorithmBase`.
+
+Its `prep_data_repo` function
+1. takes the feature vector at the same day of the collected label
+2. performs a feature normalization
+3. filters empty features and days with a large amount of missing data
+4. imputes the rest of the missing data using median
+5. puts the data into a `DataRepo` and return it
+
+Its `prep_model` function is left empty for custom implementation.
+
+This object can serve as a starting point and other traditional ML algorithms can extend [`DepressionDetectionAlgorithm_ML_basic`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/ml_basic.py).
+
+For example, the implementation of [Saeb *et al.*](https://doi.org/10.2196/jmir.4273)'s algorithm 
+can be found [`algorithm/ml_saeb.py`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/ml_saeb.py)
+and [`config/ml_saeb.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/ml_saeb.yaml).
+
+### How to add a DL algorithm
+
+We use ERM ([`algorithm/dl_erm.py`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/dl_erm.py)) as the basic deep learning algorithm [`DepressionDetectionAlgorithm_DL_erm`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/dl_erm.py) that extends `DepressionDetectionAlgorithmBase`.
+
+Its `prep_data_repo` function
+1. prepares a set of data loaders [`MultiSourceDataGenerator`](https://github.com/UW-EXP/GLOBEM/tree/main/data_loader/data_loader_dl.py) as training&validation or testing set
+2. puts them into a `DataRepo` and returns it
+
+Its `prep_model` function
+1. defines a standard deep-learning classifier [`DepressionDetectionClassifier_DL_erm`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/dl_erm.py) that extends `DepressionDetectionClassifierBase`
+2. defines how a deep model should be trained, saved, and evaluated.
+The training setup is parameterized in config files such as [`config/dl_erm_1dCNN.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/dl_erm_1dCNN.yaml).
+
+This algorithm can serve as a starting point, and other DL algorithms can extend `DepressionDetectionAlgorithm_DL_erm` and `DepressionDetectionClassifier_DL_erm`.
+
+For example, the implementation of [IRM](http://arxiv.org/abs/1907.02893) algorithm can be found at [`algorithm/dl_irm.py`](https://github.com/UW-EXP/GLOBEM/tree/main/algorithm/dl_irm.py) and [`config/dl_irm.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/dl_irm.yaml).
+
+For both traditional ML and DL algorithms, if the pre-implementation is not help, developers can also start from the plain `DepressionDetectionAlgorithmBase` and `DepressionDetectionClassifierBase`.
+
+## How to add a new dataset
+
+To include a new dataset in the pipeline, follow the steps:
+1. Define the name of the new dataset with the template `[group name]_[dataset NO in the group]`, *e.g.,* `ABC_1`.
+2. Following the same structure as other dataset folders in `data_raw`, the new dataset folder (*e.g.,*, `ABC_1`) needs to contain three subfolders. Please refer to [`GLOBEM Datasets`](/datasets/structure) page for more details:
+   * `FeatureData`
+      - A csv file `rapids.csv` indexed by `pid` and `date` for feature data, and separate files `[data_type].csv` indexed by `pid` and `date` for each data type.
+      - Each row is a feature vector of a subject at a given date. Example columns: [`pid`, `date`, `feature1`, `feature2`...].
+      - Columns include all sensor features of *Phone Location*, *Phone Screen*, *Calls*, *Bluetooth*, *Fitbit Steps*, and *Fitbit Sleep* from [RAPIDS toolkit](https://www.rapids.science/1.6/).
+   * `SurveyData`
+      - csv files indexed by `pid` and `date` for label data. 
+      - For depression detection specifically, there are two files: `dep_weekly.csv` and `dep_endterm.csv`. 
+      - For other tasks, there are three files: `pre.csv`, `post.csv`, and `ema.csv`.
+   * `ParticipantsInfoData`
+      - A csv file `platform.csv` indexed by `pid` for data collection device platform (*i.e.,* iOS or Android). 
+      - Example columns of the file: [`pid`, `platform`].
+3. Register the new path in [`data/data_factory.py`](https://github.com/UW-EXP/GLOBEM/tree/main/data/data_factory.py) by adding new key-value pairs in the following dictionaries: `feature_folder`, `survey_folder`, and `device_info_folder` (*e.g.,* adding `{"ABC": {1: ...}}`).
+4. Register the new dataset key into the [`config/global_config.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/global_config.yaml) into `global_config["all"]["ds_keys"]` (*e.g.,* appending `"ABC_1"`).
+
+## How to add a new modeling target
+
+Our current platform only supports binary classification tasks.
+Future work will be needed to extend to multi-classification and regression tasks.
+To build a model for a new target other than depression detection, please follow the steps:
+1. Pick a column in either `ema.csv`, or `post.csv` (see [`data_raw/README.md`](https://github.com/UW-EXP/GLOBEM/tree/main/data_raw/README.md) for more details) as the target name.
+    - Note that the picked column needs to be consistent across all datasets defined in [`config/global_config.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/global_config.yaml). A column in `pre.csv` would also work as long as the date can be handled correctly. Here `UCLA_10items_POST` from `post.csv` is used as an example, a metric measuring loneliness.
+2. Define the binary label for the target in [`data/data_factory.py`](https://github.com/UW-EXP/GLOBEM/tree/main/data/data_factory.py)'s `threshold_book`. 
+    - A simple threshold based method is used to add a `key:value` pair to the `threshold_book`, where `key` is the target name and `value` is a dionctionary `{"threshold_as_false": th1, "threshold_as_true":th2}` (note that `th1` is different from `th2`).
+    - For example, for `UCLA_10items_POST`, scores < = 24 will be defined as `False`, and scores > 24 will be `True`. This corresponds to adding the following `key:value` pair to the `threshold_book`: `"UCLA_10items_POST": {"threshold_as_false": 24, "threshold_as_true":25}`. 
+3. Define it in the [`config/global_config.yaml`](https://github.com/UW-EXP/GLOBEM/tree/main/config/global_config.yaml) to involve it in the pipeline. 
+    - Replace `global_config["all"]["prediction_tasks"]` to be `[the new target]`. Continuing the example, it will be `["UCLA_10items_POST"]`.

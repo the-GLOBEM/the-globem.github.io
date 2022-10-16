@@ -1,0 +1,416 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Benchmark
+
+## Evaluaiton tasks
+
+GLOBEM supports multiple evaluation tasks to enable model evaluation from various perspectives. For example,
+- `Users Past/Future within One Dataset`: 
+  a simple setup that uses the first 80% of every user's data as the training set, and the remaining 20% as the testing set in each DS.
+- `Leave-One-Dataset-Out`: 
+  a cross-dataset setup that uses three DS as the training set, and the other as the testing set.
+- `Pre/Post-COVID`: 
+  another cross-dataset setup to measure the effect of the pandemic, using DS1&2 (before COVID) as the training set and DS3&4 (after COVID) as the testing set, and then swapping the two sides.
+- `Overlapping Users across Datasets`:
+  a cross-dataset setup that only focuses on overlapping users in multiple datasets to measure the time effect, which trains a model with overlapping users from one dataset, and tests it on overlapping users from other datasets.
+
+Please find more detailed explainations of different tasks in the [tutorial](/platform/tutorial/runalgorithm).
+
+<Callout emoji="💡">
+**Depression detection**, an important well-being related task, is used as an example to benchmark our multi-year datasets.
+Future work can explore other modeling targets.
+</Callout>
+
+## Benchmark Results Summary
+
+The following table summarizes the depression detection benchmark results on the four-year [GLOBEM datasets](/dataset/overview).
+
+<br/>
+
+<table>
+    <tr>
+        <td rowspan="2"><strong>Category</strong></td>
+        <td rowspan="2"><strong>Model</strong></td>
+        <td align="center"><strong>Single DS</strong></td>
+        <td colspan="3" align="center"><strong>Cross DS Generalization</strong></td>
+    </tr>
+    <tr>
+        <td align="center"><strong>Past/Future</strong></td>
+        <td align="center"><strong>Leave-One-DS-Out</strong></td>
+        <td align="center"><strong>Pre/Post-COVID</strong></td>
+        <td align="center"><strong>Overlapping Users</strong></td>
+    </tr>
+    <tr>
+        <td>Baseline</td>
+        <td>Majority</td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+    </tr>
+    <tr>
+        <td rowspan="9">Model Designed for Depression Detection</td>
+        <td>Canzian *et al.*</td>
+        <td align="center">0.536<sub><span>&#177;</span>0.026</sub></td>
+        <td align="center">0.498<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.497<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.496<sub><span>&#177;</span>0.031</sub></td>
+    </tr>
+    <tr>
+        <td>Saeb *et al.*</td>
+        <td align="center">0.557<sub><span>&#177;</span>0.020</sub></td>
+        <td align="center">0.536<sub><span>&#177;</span>0.008</sub></td>
+        <td align="center">0.519<sub><span>&#177;</span>0.004</sub></td>
+        <td><strong align="center">0.565<sub><span>&#177;</span>0.039</sub></strong></td>
+    </tr>
+    <tr>
+        <td>Farhan *et al.*</td>
+        <td align="center">0.562<sub><span>&#177;</span>0.021</sub></td>
+        <td align="center">0.506<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.019</sub></td>
+        <td align="center">0.480<sub><span>&#177;</span>0.013</sub></td>
+    </tr>
+    <tr>
+        <td>Wahle *et al.*</td>
+        <td align="center">0.598<sub><span>&#177;</span>0.020</sub></td>
+        <td align="center">0.524<sub><span>&#177;</span>0.011</sub></td>
+        <td align="center">0.526<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.512<sub><span>&#177;</span>0.013</sub></td>
+    </tr>
+    <tr>
+        <td>Lu *et al.*</td>
+        <td align="center">0.550<sub><span>&#177;</span>0.024</sub></td>
+        <td align="center">0.531<sub><span>&#177;</span>0.011</sub></td>
+        <td align="center">0.505<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.508<sub><span>&#177;</span>0.022</sub></td>
+    </tr>
+    <tr>
+        <td>Wang *et al.*</td>
+        <td align="center">0.530<sub><span>&#177;</span>0.020</sub></td>
+        <td align="center">0.521<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.524<sub><span>&#177;</span>0.010</sub></td>
+        <td align="center">0.532<sub><span>&#177;</span>0.028</sub></td>
+    </tr>
+    <tr>
+        <td>Xu *et al.*-I</td>
+        <td><strong align="center">0.691<sub><span>&#177;</span>0.018</sub></strong></td>
+        <td align="center">0.502<sub><span>&#177;</span>0.012</sub></td>
+        <td align="center">0.519<sub><span>&#177;</span>0.019</sub></td>
+        <td align="center">0.494<sub><span>&#177;</span>0.013</sub></td>
+    </tr>
+    <tr>
+        <td>Xu *et al.*-P</td>
+        <td align="center">0.600<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.502<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.508<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.544<sub><span>&#177;</span>0.009</sub></td>
+    </tr>
+    <tr>
+        <td>Chikersal *et al.*</td>
+        <td align="center">0.649<sub><span>&#177;</span>0.016</sub></td>
+        <td><strong align="center">0.536<sub><span>&#177;</span>0.002</sub></strong></td>
+        <td><strong align="center">0.528<sub><span>&#177;</span>0.024</sub></strong></td>
+        <td align="center">0.545<sub><span>&#177;</span>0.032</sub></td>
+    </tr>
+    <tr>
+        <td rowspan="15">Model for Domain Generalization</td>
+        <td>ERM-1dCNN</td>
+        <td align="center">0.568<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.510<sub><span>&#177;</span>0.008</sub></td>
+        <td align="center">0.514<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.534<sub><span>&#177;</span>0.007</sub></td>
+    </tr>
+    <tr>
+        <td>ERM-2dCNN</td>
+        <td align="center">0.533<sub><span>&#177;</span>0.013</sub></td>
+        <td align="center">0.510<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.504<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.520<sub><span>&#177;</span>0.011</sub></td>
+    </tr>
+    <tr>
+        <td>ERM-LSTM</td>
+        <td align="center">0.565<sub><span>&#177;</span>0.019</sub></td>
+        <td align="center">0.512<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.512<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.525<sub><span>&#177;</span>0.020</sub></td>
+    </tr>
+    <tr>
+        <td>ERM-Transformer</td>
+        <td align="center">0.584<sub><span>&#177;</span>0.013</sub></td>
+        <td align="center">0.509<sub><span>&#177;</span>0.008</sub></td>
+        <td align="center">0.512<sub><span>&#177;</span>0.016</sub></td>
+        <td align="center">0.506<sub><span>&#177;</span>0.005</sub></td>
+    </tr>
+    <tr>
+        <td>ERM-Mixup</td>
+        <td align="center">0.568<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.501<sub><span>&#177;</span>0.008</sub></td>
+        <td align="center">0.507<sub><span>&#177;</span>0.004</sub></td>
+        <td align="center">0.534<sub><span>&#177;</span>0.007</sub></td>
+    </tr>
+    <tr>
+        <td>IRM</td>
+        <td align="center">0.573<sub><span>&#177;</span>0.016</sub></td>
+        <td align="center">0.506<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.499<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.508<sub><span>&#177;</span>0.015</sub></td>
+    </tr>
+    <tr>
+        <td>DANN-D</td>
+        <td align="center">0.526<sub><span>&#177;</span>0.016</sub></td>
+        <td align="center">0.514<sub><span>&#177;</span>0.004</sub></td>
+        <td align="center">0.514<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.482<sub><span>&#177;</span>0.013</sub></td>
+    </tr>
+    <tr>
+        <td>DANN-P</td>
+        <td align="center">0.502<sub><span>&#177;</span>0.002</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.486<sub><span>&#177;</span>0.017</sub></td>
+    </tr>
+    <tr>
+        <td>CSD-D</td>
+        <td align="center">0.562<sub><span>&#177;</span>0.022</sub></td>
+        <td align="center">0.521<sub><span>&#177;</span>0.002</sub></td>
+        <td align="center">0.512<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.517<sub><span>&#177;</span>0.025</sub></td>
+    </tr>
+    <tr>
+        <td>CSD-P</td>
+        <td align="center">0.542<sub><span>&#177;</span>0.010</sub></td>
+        <td align="center">0.511<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.516<sub><span>&#177;</span>0.000</sub></td>
+        <td align="center">0.515<sub><span>&#177;</span>0.028</sub></td>
+    </tr>
+    <tr>
+        <td>MLDG-D</td>
+        <td align="center">0.522<sub><span>&#177;</span>0.013</sub></td>
+        <td align="center">0.511<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.495<sub><span>&#177;</span>0.004</sub></td>
+        <td align="center">0.519<sub><span>&#177;</span>0.014</sub></td>
+    </tr>
+    <tr>
+        <td>MLDG-P</td>
+        <td align="center">0.508<sub><span>&#177;</span>0.011</sub></td>
+        <td align="center">0.510<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.500<sub><span>&#177;</span>0.003</sub></td>
+        <td align="center">0.511<sub><span>&#177;</span>0.016</sub></td>
+    </tr>
+    <tr>
+        <td>MASF-D</td>
+        <td align="center">0.505<sub><span>&#177;</span>0.006</sub></td>
+        <td align="center">0.505<sub><span>&#177;</span>0.001</sub></td>
+        <td align="center">0.504<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.532<sub><span>&#177;</span>0.015</sub></td>
+    </tr>
+    <tr>
+        <td>MASF-P</td>
+        <td align="center">0.495<sub><span>&#177;</span>0.007</sub></td>
+        <td align="center">0.505<sub><span>&#177;</span>0.004</sub></td>
+        <td align="center">0.509<sub><span>&#177;</span>0.011</sub></td>
+        <td align="center">0.530<sub><span>&#177;</span>0.011</sub></td>
+    </tr>
+    <tr>
+        <td>Siamese</td>
+        <td align="center">0.545<sub><span>&#177;</span>0.025</sub></td>
+        <td align="center">0.509<sub><span>&#177;</span>0.010</sub></td>
+        <td align="center">0.515<sub><span>&#177;</span>0.002</sub></td>
+        <td align="center">0.527<sub><span>&#177;</span>0.031</sub></td>
+    </tr>
+    <tr>
+        <td> Model for Generalized Depression Detection </td>
+        <td>Reorder</td>
+        <td><strong align="center">0.626<sub><span>&#177;</span>0.009</sub></strong></td>
+        <td><strong align="center">0.547<sub><span>&#177;</span>0.008</sub></strong></td>
+        <td><strong align="center">0.525<sub><span>&#177;</span>0.003</sub></strong></td>
+        <td><strong align="center">0.573<sub><span>&#177;</span>0.030</sub></strong></td>
+    </tr>
+</table>
+
+## Supported Algorithms
+
+The following list shows the algorithms that are currently supported by GLOBEM.
+Any contirbutions to the codebase are welcomed!
+
+### Algorithms Designed for Depression Detection
+
+#### Canzian *et al.*
+
+**Description**: This algorithm used location trajectory features directly computed from the past two-week time window
+(*e.g.*, daily and total travel distance, number of visited places, routineness)
+to train a support vector machine (SVM) for depression detection.
+
+**Reference**: L. Canzian and M. Musolesi. Trajectories of depression: Unobtrusive monitoring of depressive states by means of smartphone mobility traces analysis. *Proceedings of the ACM International Joint Conference on Pervasive and Ubiquitous Computing*, pages 1293–1304, 2015.
+
+#### Saeb *et al.*
+
+**Description**: This algorithm used the combination of location and screen features and aggregated their daily average of the past two weeks
+(*e.g.*, location variance, location entropy, screen unlock duration and frequency)
+to train a logistic regression model with elastic regularization.
+
+**Reference**: S. Saeb, M. Zhang, C. J. Karr, S. M. Schueller, M. E. Corden, K. P. Kording, and D. C. Mohr. Mobile phone sensor correlates of depressive symptom severity in daily-life behavior: An exploratory study. *Journal of Medical Internet Research*, 17(7):1–11, 2015.
+
+#### Farhan *et al.*
+
+**Description**: This algorithm used location and physical activity features from the past two-week window to train an SVM model.
+
+**Reference**: A. A. Farhan, C. Yue, R. Morillo, S. Ware, J. Lu, J. Bi, J. Kamath, A. Russell, A. Bamis, and B. Wang. Behavior vs. introspection: refining prediction of clinical depression via smartphone sensing data. In *2016 IEEE Wireless Health* (WH), pages 1–8. IEEE, Oct. 2016.
+
+#### Wahle *et al.*
+
+**Description**: This algorithm used features from several sensors (activity, location, WiFi, screen, and call) over the past two weeks. They used both daily aggregation (*i.e.*, mean, sum, variance) and direct computation of the features of the two weeks to build SVM and Random Forest models.
+WiFi and call features are left out to ensure its compatibility with our datasets.
+
+**Reference**: F. Wahle, T. Kowatsch, E. Fleisch, M. Rufer, and S. Weidt. Mobile Sensing and Support for People With Depression: A Pilot Trial in the Wild. *JMIR mHealth and uHealth*, 4(3):e111, 2016. ISBN: doi:10.2196/mhealth.5960.
+
+#### Lu *et al.*
+
+**Description**: This algorithm used location, activity, and sleep features computed from the past two weeks and built multi-task learning models combining
+linear regression and logistic regression. 
+To further deal with device platform differences, they built one model for iOS devices and one for Android devices.
+
+**Reference**: J. Lu, J. Bi, C. Shang, C. Yue, R. Morillo, S. Ware, J. Kamath, A. Bamis, A. Russell, and B. Wang. Joint Modeling of Heterogeneous Sensing Data for Depression Assessment via Multi-task Learning. *Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies*, 2(1):1–21, 2018. ISBN: 9781450351980.
+
+#### Wang *et al.*
+
+**Description**: This algorithm used location, screen, activity, sleep, and audio features and aggregated their daily average and slope of the 
+past two weeks (for the frequent prediction) or the whole study period (for the end-of-term prediction). 
+They built a lasso-regularized logistic regression model for the prediction.
+Audio features are excluded as they were not collected in all datasets.
+
+**Reference**: R.Wang,W.Wang, A. daSilva, J. F. Huckins,W. M. Kelley, T. F. Heatherton, and A. T. Campbell. Tracking Depression Dynamics in College Students Using Mobile Phone andWearable Sensing. *Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies*, 2(1):1–26, 2018. ISBN: 2474-9567.
+
+#### Xu *et al.* - Interpretable
+
+**Description**: This algorithm used location, screen, activity, and sleep features in multiple epochs of a day (morning, afternoon, evening, night). 
+They first applied association rule mining to mine out interpretable behavior rules that capture differences between participants 
+with depression and without depression. Then, they used the rules to filter and aggregate features of multiple days and built 
+an Adaboost model for the detection.
+
+**Reference**: X. Xu, P. Chikersal, A. Doryab, D. K. Villalba, J. M. Dutcher, M. J. Tumminia, T. Althoff, S. Cohen, K. G. Creswell, J. D. Creswell, J. Mankoff, and A. K. Dey. Leveraging Routine Behavior and Contextually-Filtered Features for Depression Detection among College Students. *Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies*, 3(3):1–33, Sept. 2019.
+
+#### Xu *et al.* - Personalized
+
+The algorithm used a similar set of features as *Xu et al. - Interpretable*.
+With each feature as a time sequence, they computed a user behavior relevance matrix using the square of Pearson correlation to capture users with strong positive or negative correlation. 
+They used a traditional collaborative-filtering-based model to select features and obtain an intermediate prediction using each feature, 
+and combined the results of all features via majority voting.
+
+**Reference**: X. Xu, P. Chikersal, J. M. Dutcher, Y. S. Sefidgar, W. Seo, M. J. Tumminia, D. K. Villalba, S. Cohen, K. G. Creswell, J. D. Creswell, A. Doryab, P. S. Nurius, E. Riskin, A. K. Dey, and J. Mankoff. Leveraging Collaborative-Filtering for Personalized Behavior Modeling: A Case Study of Depression Detection among College Students. *Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies*, 5(1):1–27, Mar. 2021.
+
+#### Chikersal *et al.*
+
+**Description**: This algorithm used a similar set of basic features as *Xu et al. - Interpretable* and calculated more aggregations (breakpoint and slope) across multiple time ranges (daily and biweekly). 
+They first trained a nested randomized logistic regression for feature selection. 
+Then, they trained separate gradient boosting and logistic regression models using data from every sensor, 
+and combined the prediction with another Adaboost model to generate the final prediction.
+
+**Reference**: P. Chikersal, A. Doryab, M. Tumminia, D. K. Villalba, J. M. Dutcher, X. Liu, S. Cohen, K. G. Creswell, J. Mankoff, J. D. Creswell, M. Goel, and A. K. Dey. Detecting Depression and Predicting its Onset Using Longitudinal Symptoms Captured by Passive Sensing. *ACM Transactions on Computer-Human Interaction*, 28(1):1–41, Jan. 2021.
+
+### Algorithms Designed for Domain Generalization
+
+#### ERM
+
+**Name**: Empirical Risk Minimization
+
+**Description**: This is the basic model training techniques without particular design for domain generalization. ERM shows a competitive performance in previous CV generalization task.
+
+Four version were implemented multiple architectures with ERM:
+- *ERM-1D-CNN*: one-dimensional CNN that treats the data as a time series of length 28
+- *ERM-2D-CNN*: two-dimensional CNN that treats the data axs an one-channel image
+- *ERM-LSTM*: another architecture to model time-series data
+- *ERM-Transformer*: a transformer-based architecture for modeling sequence data.
+
+**Reference**: V. N. Vapnik. An overview of statistical learning theory. *IEEE transactions on neural networks*, 10(5):988–999, 1999.
+
+#### Mixup
+
+**Name**: Mixup
+
+**Description**: This is a popular data manipulation and augmentation technique that performs linear interpolation between any two instances with a weight sampled from a Beta distribution.
+Mixup can be plugged into any model architecture and training pipeline. 
+1D-CNN was used in all experiments. Similarly, 1D-CNN was also employed for the other methods for other algorithms if they are agnostic of architectures.
+
+**Reference**: H. Zhang, M. Cisse, Y. N. Dauphin, and D. Lopez-Paz. mixup: Beyond Empirical Risk Minimization. *arXiv:1710.09412* [cs, stat], Apr. 2018.
+
+#### IRM
+
+**Name**: Invariant Risk Minimization
+
+**Description**: A representation learning paradigm to estimate invariant correlations across multiple distributions
+ and learn a data representation such that the optimal classifier can match all training distributions.
+
+**Reference**: M. Arjovsky, L. Bottou, I. Gulrajani, and D. Lopez-Paz. Invariant Risk Minimization. *arXiv:1907.02893* [cs, stat], Mar. 2020.
+
+#### DANN
+
+**Name**: Domain-Adversarial Neural Network
+
+**Description**: This is another representation learning technique that adversarially trains the generator and discriminator.
+The discriminator is trained to distinguish different domains, while the generator is trained to fool the discriminator to learn domain-invariant feature representations.
+For our purposes, DANN has:
+- *DANN - Dataset as Domain (DANN-D)*: each dataset as a domain
+- *DANN - Person as Domain (DANN-P)*: each person as a domain
+
+**Reference**: Y. Ganin, E. Ustinova, H. Ajakan, P. Germain, H. Larochelle, F. Laviolette, M. Marchand, and V. Lempitsky. Domain-Adversarial Training of Neural Networks. *In Domain Adaptation in Computer Vision Applications*, pages 189–209. Springer International Publishing, Cham, 2017. Series Title: Advances in Computer Vision and Pattern Recognition.
+
+#### CSD
+
+**Name**: Common Specific Decomposition
+
+**Description**: This is a feature disentanglement-based representation learning technique from the multi-component analysis perspective, 
+which extracts the domain-shared and domain-specific features using separate network parameters.
+Similar to DANN, CSE also had two versions of domain: 
+- *CSD - Dataset as Domain (CSD-D)*
+- *CSD - Person as Domain (CSD-P)*
+
+**Reference**: V. Piratla, P. Netrapalli, and S. Sarawagi. Efficient Domain Generalization via Common-Specific Low-Rank Decomposition. *arXiv:2003.12815* [cs, stat], Apr. 2020. 
+
+#### MLDG
+
+**Name**: Meta-Learning for Domain Generalization
+
+**Description**: This is one of the first methods using meta-learning strategy for domain generalization. 
+MLDG splits the data of the training domains into meta-train and meta-test to simulate the domain shift to learn general features.
+Similarly, it had two versions:
+- *MLDG - Dataset as Domain (MLDG-D)*
+- *MLDG - Person as Domain (MLDG-P)*
+
+**Reference**: D. Li, Y. Yang, Y.-Z. Song, and T. M. Hospedales. Learning to Generalize: Meta-Learning for Domain Generalization. *arXiv:1710.03463* [cs], Oct. 2017.
+
+#### MASF
+
+**Name**: Model-Agnostic Learning of Semantic Features
+
+**Description**: A learning strategy that combines meta-learning and feature disentanglement. 
+After simulating domain shift by domain split, MASF further regularizes the semantic structure of the feature space 
+by introducing a global loss (to preserve relationships between classes) and a local loss (to promote domain-independent class clustering). 
+The two versions of MASF were:
+- *MASF - Dataset as Domain (MASF-D)*
+- *MASF - Person as Domain (MASF-P)*
+
+**Reference**: Q. Dou, D. C. Castro, K. Kamnitsas, and B. Glocker. Domain Generalization via Model-Agnostic Learning of Semantic Features. *arXiv:1910.13580* [cs], Oct. 2019.
+
+#### Siamese
+
+**Name**: Siamesee Network
+
+**Description**: Metric-learning based strategy to find a better pair-wise distance metric. 
+It aims to decrease the distance between positive pairs (*i.e.*, same labels) 
+and increase the distance between negative pairs (*i.e.*, different labels).
+
+**Reference**: G. Koch, R. Zemel, and R. Salakhutdinov. Siamese Neural Networks for One-shot Image Recognition. *Proceedings of the 32nd International Conference on Machine Learning*, page 8, 2015.
+
+### Algorithms Achieving Both 
+
+#### Reorder
+
+**Name**: Reorder
+
+**Description**: A recently proposed method to leverage the continuity of behavior trajectory. 
+It designed a pretext task which shuffles the temporal order of the feature matrix. Then a model is trained to reconstruct the original sequence, 
+jointly optimized with the main classification task over different domains.
+By capturing the continuity of daily behaviors, the model could learn to extract representations that are generalizable across individuals.
+
+**Reference**: X. Xu, X. Liu, H. Zhang, W. Wang, S. Nepal, K. S. Kuehn, J. Huckins, M. E. Morris, P. S. Nurius, E. A. Riskin, S. Patel, T. Althoff, A. Campell, A. K. Dey, and J. Mankoff. Globem: Cross-dataset generalization of longitudinal human behavior modeling. *Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies*, (1):1, 2022.

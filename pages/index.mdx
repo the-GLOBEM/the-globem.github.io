@@ -3,50 +3,62 @@ title: GLOBEM
 ---
 
 import Callout from 'nextra-theme-docs/callout'
-import Features from 'components/features'
 import Bleed from 'nextra-theme-docs/bleed'
 import Image from 'next/image'
 import Link from 'next/link'
+import PaperButtons from 'components/papers'
 
-{
-// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
-}
 { 
   <>
   <h1 className="text-center font-extrabold md:text-5xl mt-8">
   <Image src = "/images/GLOBEM_logo.svg" alt="GLOBEM Logo" height={100} width={512}/>
   </h1>
   </>
-  }
+}
 
-<Bleed><Features/></Bleed>
-
-**GLOBEM** is a platform to accelerate cross-dataset generalization research in the longitudinal behavior modeling domain.
+<div className="mx-auto max-w-full w-[880px] text-center px-4 mb-10">
+  <div className="text-lg mb-2 text-gray-600 md:!text-2xl">
+    <u><strong>G</strong></u>eneralization of <u><strong>LO</strong></u>ngitudinal <u><strong>BE</strong></u>havior <u><strong>M</strong></u>odeling
+  </div>
+</div>
 
 <Callout emoji="✅">
-GLOBEM not only supports flexible and rapid evaluation of the existing behavior modeling methods,
-but also provides easy-to-extend templates for researchers to develop and prototype their own behavior modeling algorithms.
+**GLOBEM** is a platform to accelerate <strong>cross-dataset generalization</strong> research in the longitudinal behavior modeling domain.
 </Callout>
+
+**GLOBEM** aims to achieve the following goals:
+- 📦 Release the first multi-year longtiduinal passive sensing dataset with ~500 unique participants
+- 🧰 Implement a series of longitudinal behavior modeling algorithms
+- 🔍 Prepare a series of cross-dataset generalization evaluation tasks
+- 🏅 Present the algorithms' generalizability benchmark on the GLOBEM datasets
+- 🔋 Enable researchers and developers to develop new algorithms with easy-to-extend tempaltes
+
+<br/>
+
+<div className="center">
+<PaperButtons/>
+</div>
+
 
 {/* <div className="mt-16 mb-20 text-center">
   [Get Started](/docs/getting-started) · [Examples](/examples/basic) · [GitHub Repository](https://github.com/UW-EXP/GLOBEM)
 </div> */}
 
-<div className="grid">
+<div className="cardgrid">
   <div className="card">
     <Link href="/datasets/overview">
       <div className="cursor-pointer">
         <h3>Datasets &rarr;</h3>
-        <p>Multi-year passive sensing datasets from UWEXP Studies </p>
+        <p>Multi-year passive mobile sensing datasets & well-being metrics. </p>
       </div>
     </Link>
   </div>
 
   <div className="card">
-    <Link href="/benchmark/overview">
+    <Link href="/platform/overview">
       <div className="cursor-pointer">
-        <h3>Benchmark &rarr;</h3>
-        <p>Generalizability evaluation with a range of algorithms. </p>
+        <h3>Platform &rarr;</h3>
+        <p>Generalizability evaluation platform and benchmark. </p>
       </div>
     </Link>
   </div>
@@ -55,7 +67,7 @@ but also provides easy-to-extend templates for researchers to develop and protot
     <Link href="/publications">
       <div className="cursor-pointer">
         <h3>Publications &rarr;</h3>
-        <p>Relevant publications based on the datasets.</p>
+        <p>Relevant publications based on the datasets and platform.</p>
       </div>
     </Link>
   </div>
@@ -64,7 +76,7 @@ but also provides easy-to-extend templates for researchers to develop and protot
     <Link href="/team">
       <div className="cursor-pointer">
         <h3>Team &rarr;</h3>
-        <p>Contact us if you have any questions.</p>
+        <p>UW-EXP Team & Contributors. Contact us for any questions.</p>
       </div>
     </Link>
   </div>

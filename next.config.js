@@ -28,33 +28,13 @@ module.exports = withNextra({
         statusCode: 302,
       },
       {
-        source: "/benchmark",
-        destination: "/benchmark/overview",
+        source: "/platform",
+        destination: "/platform/overview",
         statusCode: 301,
       },
       {
-        source: "/benchmark",
-        destination: "/benchmark/overview",
-        statusCode: 302,
-      },
-      {
-        source: "/team",
-        destination: "/team",
-        statusCode: 301,
-      },
-      {
-        source: "/team",
-        destination: "/team",
-        statusCode: 302,
-      },
-      {
-        source: "/publications",
-        destination: "/publications",
-        statusCode: 301,
-      },
-      {
-        source: "/publications",
-        destination: "/publications",
+        source: "/platform",
+        destination: "/platform/overview",
         statusCode: 302,
       }
     ];

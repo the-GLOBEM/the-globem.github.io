@@ -8,22 +8,22 @@
     "title": "Datasets",
     "type": "page"
   },
-  "benchmark": {
-    "title": "Benchmark",
+  "platform": {
+    "title": "Platform",
     "type": "page"
   },
   "publications": {
     "title": "Publications",
     "type": "page",
     "theme": {
-      "sidebar": false
+      "sidebar": true
     }
   },
   "team": {
     "title": "Team",
     "type": "page",
     "theme": {
-      "sidebar": false
+      "sidebar": true
     }
   }
 }

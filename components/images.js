@@ -1,7 +1,5 @@
 import Image from 'next/future/image';
 
-
-
 export default function FullWidthImage({src, alt}) {
   return (
       <Image

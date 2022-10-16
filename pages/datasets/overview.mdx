@@ -4,11 +4,14 @@ import FullWidthImage from 'components/images'
 
 # Overview
 
+<Callout emoji="✅">
+To download the dataset, please visit our [PhysioNet page](https://physionet.org/content/globem/1.0.0/).
+</Callout>
+
 ## Dataset Introduction
 
-GLOBEM datasets contain the first released multi-year mobile and wearable sensing datasets that contain four data collection studies from 2018 to 2021, 
+GLOBEM datasets contain the first released multi-year mobile and wearable sensing datasets that include four data collection studies from 2018 to 2021, 
 conducted at University of Washington (led by the UW-EXP Study Team).
-To download the dataset, please visit our [PhysioNet page](https://physionet.org/content/globem/1.0.0/).
 
 The four years of datasets are named as
 - `INS-W_1` (2018) - 155 participants
@@ -27,6 +30,10 @@ We envision our datasets can:
 - Support multiple cross-dataset generalization tasks to evaluate an algorithm’s generalizability (*e.g.*, different datasets across different years) and robustness (*e.g.*, same users over multiple years).
 - Assist ML and Ubicomp researchers in developing more generalizable longitudinal behavior modeling algorithms.
 
+## Data Collection and Processing
+
+### Data Collection
+
 The overall data collection procedure is shown in the following figure:
 <br/>
 <FullWidthImage
@@ -34,9 +41,33 @@ The overall data collection procedure is shown in the following figure:
   alt = "Overview of the data collection studies"
 />
 
+We developed a mobile app using the [AWARE framework](https://awareframework.com/) that continuously collects location, phone usage (screen status), Bluetooth scans, and call logs. 
+The app is compatible with both the iOS and Android platforms. 
+Participants installed the app on smartphones and left it running in the background.
+In addition, we provided Fitbits to collect their physical activities and sleep behaviors. 
+The mobile app and wearable passively collected sensor data 24$\times$7 during the study.
+The average study length is 78 days per person per year among the four datasets.
+
+Meanwhile, surveys are delivered to participants at the start/end and during the study.
+These surveys cover a wide range of life experience of participants, including personality, physical well-being, mental well-being, social justice, and substance usage.
+
+### Data Processing
+
+Due to the sensitive nature of the dataset, we release our feature-level data with open credentialed access.
+
+We utilize [RAPIDS](https://www.rapids.science/1.6/), an open-source platform that provides a Reproducible Analysis Pipeline for Data Streams.
+It supports feature extraction from data collected via multiple mobile and wearable devices with various time windows.
+
+
 ## Data Types
 
-Each of our datasets include three types of data: `Feature Data`, `Survey Data`, and `Demographic Data`.
+Each of our datasets include three types of data: `Feature Data`, `Survey Data`, and `Participant Info Data`.
+
+### Survey Data
+
+We collected survey data at multiple stages of the study, including 
+- `Pre/Post Surveys`: collected at the start/end of the study
+- `EMA Surveys`: collectedly regualrly during the study
 
 ### Behaivor Feature Data
 
@@ -49,11 +80,10 @@ The behavior feature data types include
 - `PhysicalActivity`
 - `Sleep`
 
-### Survey Data
+### Participant Info Data
 
-### Demographic Data
-
-
+We also additional information about participants, including the smartphone platform they installed the data collection app, 
+as well as their demographics (*e.g.*, age, gender, racical group)
 
 ## Examples
 

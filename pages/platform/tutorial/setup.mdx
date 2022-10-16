@@ -1,0 +1,30 @@
+import Callout from 'nextra-theme-docs/callout'
+
+# Setup
+
+## Environment
+
+The GLOBEM is a python-based platform. Here is an example of using Anaconda or miniconda for environment setup:
+
+```shell
+conda create -n globem python=3.7
+conda activate globem
+pip install -r requirements.txt
+```
+
+## Dataset Preparation
+
+Example raw data are provided in our Github `data_raw` folder. 
+Please refer to the [GLOBEM Dataset page](/dataset/overview) for more details about the raw data format.
+
+A simple script is prepared to process these raw data.
+As different subjects may have a different amount of data, 
+the main purpose of the processing is to slice the data into standard (`feature matrix`, `label`) pairs (see XXX in the next page for specific definitions).
+
+The preparation can be done by running
+```shell
+python data/data_prep.py
+```
+<Callout emoji="⚠️">
+`ETA` ~45 mins with the completed version of the four-year dataset, ~3 mins with the sample data.
+</Callout>

@@ -121,8 +121,8 @@ export default {
   },
   footerText: ({ locale }) => {
     return (<div>
-      <a href="https://github.com/UW-EXP">UW-EXP</a> from University of Washington <br/>
-      Modified from <a href="https://github.com/vercel/swr-site">SWR</a>.
+      <a href="https://github.com/UW-EXP">UW-EXP</a> at University of Washington <br/>
+      <sup>Website template is based on <a href="https://github.com/vercel/swr-site">SWR</a>.</sup>
       </div>)
   }
 };

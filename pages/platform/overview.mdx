@@ -1,0 +1,69 @@
+import Callout from 'nextra-theme-docs/callout'
+import Link from 'next/link'
+import FullWidthImage from 'components/images'
+
+# Overview
+
+GLOBEM not only supports flexible and rapid evaluation of the existing behavior modeling methods,
+but also provides easy-to-extend templates for researchers to develop and prototype their own behavior modeling algorithms.
+
+<br/>
+<FullWidthImage
+  src = "/images/platform_design.png"
+  alt = "Overview of the GLOBEM platform"
+/>
+
+It splits the whole pipeline into three independent modules:
+- The `feature preparation module` defines behavior features used by the algorithm.
+- The `model computation module` defines how a behavior model is going to be trained. These two modules are determined by the core algorithm.
+- The `configuration module` provides the flexibility to adjust hyperparameters in the algorithm.
+
+Researchers and developers can re-use or re-purpose any of these modules to develop new algorithms within the pipeline.
+GLOBEM separates the configuration setup from the model definition, supporting easy testing and ablation studies of hyperparameters and different features.
+
+Moreover, GLOBEM provides a series of generalization evaluation tasks to enable rapid testing of any algorithm.
+
+## Quick Start
+
+Try the plaform with one line of command, assuming Anaconda/miniconda is already installed on the machine.
+Please find the details of the setup and examples explained in the rest of tutorial.
+
+```sh
+git clone https://github.com/UW-EXP/GLOBEM.git
+cd GLOBEM
+/bin/bash run.sh
+```
+
+<sup> Our platform is tested with Python 3.7 under MacOS 11.6 (intel) and CentOS 7. </sup>
+
+
+## Available Algorithms
+
+The platform currently supports the task of **depression detection** and closely reimplements the following algorithms:
+
+* Traditional Machine Learning Algorithm
+  - [Trajectories of depression: Unobtrusive monitoring of depressive states by means of smartphone mobility traces analysis](https://doi.org/10.1145/2750858.2805845), by Canzian *et al.*, 2015
+  - [Mobile phone sensor correlates of depressive symptom severity in daily-life behavior: An exploratory study](https://doi.org/10.2196/jmir.4273), by Saeb *et al.*, 2015 
+  - [Behavior vs. introspection: refining prediction of clinical depression via smartphone sensing data](https://doi.org/10.1109/WH.2016.7764553), by Farhan *et al.*, 2016
+  - [Mobile Sensing and Support for People With Depression: A Pilot Trial in the Wild](https://doi.org/10.2196/mhealth.5960), by Wahle *et al.*, 2016 
+  - [Joint Modeling of Heterogeneous Sensing Data for Depression Assessment via Multi-task Learning](https://dl.acm.org/doi/10.1145/3191753), by Lu *et al.*, 2018
+  - [Tracking Depression Dynamics in College Students Using Mobile Phone and Wearable Sensing](https://dl.acm.org/doi/10.1145/3191775), by Wang *et al.*, 2018
+  - [Leveraging Routine Behavior and Contextually-Filtered Features for Depression Detection among College Students](https://doi.org/10.1145/3351274), by Xu *et al.*, 2019
+  - [Leveraging Collaborative-Filtering for Personalized Behavior Modeling: A Case Study of Depression Detection among College Students](https://doi.org/10.1145/3448107), by Xu *et al.*, 2021
+  - [Detecting Depression and Predicting its Onset Using Longitudinal Symptoms Captured by Passive Sensing](https://doi.org/10.1145/3422821), by Chikersal *et al.*, 2021
+
+* Deep Learning Based Domain Generalization Algorithm
+  - [Empirical Risk Minimization (ERM)](https://ieeexplore.ieee.org/abstract/document/788640)
+  - Data Manipulation
+    - [Mixup](http://arxiv.org/abs/1710.09412), by Zhang *et al.*, 2018
+  - Representation Learning
+    - [Domain-Adversarial Neural Network (DANN)](https://doi.org/10.1007/978-3-319-58347-1_10), by Ganin *et al.*, 2017
+    - [Invariant Risk Minimization (IRM)](http://arxiv.org/abs/1907.02893), by Arjovsky *et al.*, 2020
+    - [Common Specific Decomposition (CSD)](http://arxiv.org/abs/2003.12815), by Piratla *et al.*, 2020
+  - Learning Strategy
+    - [Meta-Learning for Domain Generalization (MLDG)](http://arxiv.org/abs/1710.03463), by Li *et al.*, 2017
+    - [Model-Agnostic Learning of Semantic Features (MASF)](http://arxiv.org/abs/1910.13580), by Dou *et al.*, 2019
+    - [Siamese Network](http://www.cs.toronto.edu/~gkoch/files/msc-thesis.pdf), by Koch *et al.*, 2015
+    - [Reorder](https://github.com/UW-EXP/GLOBEM/blob/main/algorithm/dl_reorder.py), by Xu *et al.*, 2022
+
+

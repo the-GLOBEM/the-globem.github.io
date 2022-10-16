@@ -13,7 +13,10 @@ The `FeatureData` folder contains seven files, all index by `pid` and `date`.
 
 ## Processing
 
-Please note:
+Our dataset was collected using an app based on the [AWARE framework](https://awareframework.com/).
+We then employed [RAPIDS](https://www.rapids.science/1.6/) for feature extraction.
+Our feature extraction contains several processing steps.
+
 - All features are extracted with multiple `time_segment`s
   - `morning` (6 am - 12 pm, calculated daily)
   - `afternoon` (12 pm - 6 pm, calculated daily)
