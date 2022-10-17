@@ -3,6 +3,7 @@
   "phoneusage": "Phone Usage",
   "call": "Call",
   "bluetooth": "Bluetooth",
+  "wifi": "Wi-Fi",
   "physicalactivity": "Physical Activity",
   "sleep": "Sleep"
 }

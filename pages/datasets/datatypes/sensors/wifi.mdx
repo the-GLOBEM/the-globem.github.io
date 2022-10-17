@@ -1,0 +1,29 @@
+# WiFi Features
+
+We use all features from [RAPIDS-WiFi](https://www.rapids.science/1.6/features/phone-wifi-connected/), 
+including the number of scans of participants' own devices and others' devices, as well as the unique count of these devices.
+
+<br/>
+
+<table>
+    <tr>
+        <td><strong>Feature Name</strong></td>
+        <td><strong>Unit</strong></td>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td>`countscans`</td>
+        <td>devices</td>
+        <td>Number of scanned WiFi access points connected during a `time_segment`, an access point can be detected multiple times over time and these appearances are counted separately.</td>
+    </tr>
+    <tr>
+        <td>`uniquedevices`</td>
+        <td>devices</td>
+        <td>Number of unique access point during a `time_segment` as identified by their hardware address.</td>
+    </tr>
+    <tr>
+        <td>`countscansmostuniquedevice`</td>
+        <td>scans</td>
+        <td>Number of scans of the most scanned access point during a `time_segment` across the whole monitoring period.</td>
+    </tr>
+</table>
