@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 
+import {GLOBEM_logo} from "./public/images/GLOBEM_logo.png"
+
 const Logo = ({ height }) => (
   <svg height={height} viewBox="0 0 307 70" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g>
@@ -7,15 +9,6 @@ const Logo = ({ height }) => (
   <path d="M156.677 7.12H175.507C180.221 7.12 183.954 8.07666 186.707 9.99C189.927 12.2767 191.537 15.5433 191.537 19.79C191.537 23.3367 190.394 26.3233 188.107 28.75C187.454 29.4967 186.637 30.1733 185.657 30.78C184.724 31.3867 183.651 31.97 182.437 32.53C187.244 33.3233 190.721 35.2133 192.867 38.2C194.501 40.4867 195.317 43.0533 195.317 45.9C195.317 50.52 193.567 54.37 190.067 57.45C186.707 60.4833 182.624 62 177.817 62H156.677V7.12ZM175.157 11.95H162.207V30.78H172.637C176.837 30.78 180.057 29.8467 182.297 27.98C184.537 26.0667 185.657 23.6167 185.657 20.63C185.657 18.2967 184.864 16.29 183.277 14.61C181.364 12.8367 178.657 11.95 175.157 11.95ZM174.177 35.61H162.207V57.17H175.507C179.521 57.17 182.811 56.1667 185.377 54.16C187.944 52.0133 189.227 49.2833 189.227 45.97C189.227 42.61 187.921 40.0433 185.307 38.27C182.741 36.4967 179.031 35.61 174.177 35.61ZM201.446 7.05H235.606V11.88H206.976V30.85H234.556V35.68H206.976V57.17H235.816V62H201.446V7.05ZM242.053 62V7.12H249.263L270.543 52.55L292.523 7.12H299.313V62H294.343V14.33L271.733 62H269.353L247.093 14.4V62H242.053Z" fill="#6A89AC"/>
   <path d="M45.3636 11.32V18.6C42.7969 16.3133 40.3236 14.61 37.9436 13.49C35.1436 12.09 32.2736 11.39 29.3336 11.39C23.4069 11.39 18.4836 13.84 14.5636 18.74C10.8302 23.22 8.96355 28.5867 8.96355 34.84C8.96355 41.1867 10.9702 46.6933 14.9836 51.36C18.7636 55.6067 23.0336 57.73 27.7936 57.73C31.5736 57.73 34.7469 56.5167 37.3136 54.09C40.1136 51.43 41.5136 47.93 41.5136 43.59V39.39H23.4536V34.56H47.1136V62H42.2836L41.5136 55.35C39.8802 57.4033 38.1302 59.0133 36.2636 60.18C33.3702 62 30.1969 62.91 26.7436 62.91C20.4436 62.91 14.9602 60.2267 10.2936 54.86C5.48689 49.4467 3.08355 42.82 3.08355 34.98C3.08355 26.9067 5.58022 20.0933 10.5736 14.54C15.5669 8.98666 21.7969 6.21 29.2636 6.21C32.5302 6.21 35.7269 6.81666 38.8536 8.03C40.4869 8.63667 42.6569 9.73333 45.3636 11.32ZM55.8734 7.12H61.4034V57.17H88.4934V62H55.8734V7.12Z" fill="#6A89AC"/>
   </g>
-  </svg>
-);
-
-const Vercel = ({ height = 20 }) => (
-  <svg height={height} viewBox="0 0 283 64" fill="none">
-    <path
-      fill="currentColor"
-      d="M141.04 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.46 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM248.72 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.45 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM200.24 34c0 6 3.92 10 10 10 4.12 0 7.21-1.87 8.8-4.92l7.68 4.43c-3.18 5.3-9.14 8.49-16.48 8.49-11.05 0-19-7.2-19-18s7.96-18 19-18c7.34 0 13.29 3.19 16.48 8.49l-7.68 4.43c-1.59-3.05-4.68-4.92-8.8-4.92-6.07 0-10 4-10 10zm82.48-29v46h-9V5h9zM36.95 0L73.9 64H0L36.95 0zm92.38 5l-27.71 48L73.91 5H84.3l17.32 30 17.32-30h10.39zm58.91 12v9.69c-1-.29-2.06-.49-3.2-.49-5.81 0-10 4-10 10V51h-9V17h9v9.2c0-5.08 5.91-9.2 13.2-9.2z"
-    />
   </svg>
 );
 
@@ -93,25 +86,32 @@ export default {
           name="description"
           content={
             meta.description ||
-            "GLOBEM is a platform to accelerate cross-dataset generalization research in the longitudinal behavior modeling domain."
+            "Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."
           }
         />
         <meta
           name="og:description"
           content={
             meta.description ||
-            "GLOBEM is a platform to accelerate cross-dataset generalization research in the longitudinal behavior modeling domain."
+            "Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."
           }
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:title" content="GLOBEM: Generalization of LOngitudinal BEhavior Modeling" />
+        <meta name="twitter:site" content="@Orson_Xu" />
+        <meta name="twitter:image" content={GLOBEM_logo} />
+        <meta name="twitter:image:alt" content="The Logo of GLOBEM" />
+        <meta
+          name="twitter:description"
+          content="Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."   
+        />
         <meta
           name="og:title"
           content={
             title ? title : "GLOBEM: Generalization of LOngitudinal BEhavior Modeling"
           }
         />
-        <meta name="og:image" content={ogImage} />
+        <meta name="og:image" content={GLOBEM_logo} />
         <meta name="apple-mobile-web-app-title" content="GLOBEM" />
       </>
     );
