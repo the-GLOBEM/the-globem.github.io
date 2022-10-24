@@ -89,13 +89,7 @@ export default {
             "Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."
           }
         />
-        <meta
-          name="og:description"
-          content={
-            meta.description ||
-            "Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."
-          }
-        />
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="GLOBEM: Generalization of LOngitudinal BEhavior Modeling" />
         <meta name="twitter:site" content="@Orson_Xu" />
@@ -106,12 +100,20 @@ export default {
           content="Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."   
         />
         <meta
-          name="og:title"
+          property="og:title"
           content={
             title ? title : "GLOBEM: Generalization of LOngitudinal BEhavior Modeling"
           }
         />
-        <meta name="og:image" content="https://the-globem.github.io/images/GLOBEM_background.png" />
+        <meta
+          property="og:description"
+          content={
+            meta.description ||
+            "Multi-year mobile sensing datasets (~500 users) and open-source platform for cross-dataset generalization research in longitudinal behavior modeling."
+          }
+        />
+        <meta property="og:url" content="https://the-globem.github.io" />
+        <meta property="og:image" content="https://the-globem.github.io/images/GLOBEM_background.png" />
         <meta name="apple-mobile-web-app-title" content="GLOBEM" />
       </>
     );
