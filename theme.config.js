@@ -99,7 +99,7 @@ export default {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="GLOBEM: Generalization of LOngitudinal BEhavior Modeling" />
         <meta name="twitter:site" content="@Orson_Xu" />
-        <meta name="twitter:image" content="/images/GLOBEM_logo.png" />
+        <meta name="twitter:image" content="https://the-globem.github.io/images/GLOBEM_logo.png" />
         <meta name="twitter:image:alt" content="The Logo of GLOBEM" />
         <meta
           name="twitter:description"
